@@ -68,6 +68,20 @@ class DevMolasses_NeoPixel {
     getPixelColor(uint16_t n) const;
   inline bool
     canShow(void) { return (micros() - endTime) >= 50L; }
+    //Color constants
+  uint32_t
+    FULL_WHITE,
+    Q3_WHITE,
+    Q2_WHITE,
+    Q1_WHITE,
+    OFF,
+    RED,
+    ORANGE,
+    YELLOW,
+    GREEN,
+    TEAL,
+    BLUE,
+    PURPLE;
 
  private:
 
