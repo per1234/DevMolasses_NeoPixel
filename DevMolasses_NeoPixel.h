@@ -69,19 +69,18 @@ class DevMolasses_NeoPixel {
   inline bool
     canShow(void) { return (micros() - endTime) >= 50L; }
     //Color constants
-  uint32_t
-    FULL_WHITE,
-    Q3_WHITE,
-    Q2_WHITE,
-    Q1_WHITE,
-    OFF,
-    RED,
-    ORANGE,
-    YELLOW,
-    GREEN,
-    TEAL,
-    BLUE,
-    PURPLE;
+  const uint32_t FULL_WHITE = 16777215; //R 255, G 255, B 255
+  const uint32_t Q3_WHITE = 12566463; //R 191, G 191, B 191
+  const uint32_t Q2_WHITE = 8355711; //R 127, G 127, B 127
+  const uint32_t Q1_WHITE = 4144959; //R 63, G 63, B 63
+  const uint32_t OFF = 0; //R 0, G 0, B 0
+  const uint32_t RED = 16711680; //R 255, G 0, B 0
+  const uint32_t ORANGE = 16744192; //R 255, G 123, B 0
+  const uint32_t YELLOW = 16776960; //R 255, G 255, B 0
+  const uint32_t GREEN = 65280; //R 0, G 255, B 0
+  const uint32_t TEAL = 65535; //R 0, G 255, B 255
+  const uint32_t BLUE = 255; //R 0, G 0, B 255
+  const uint32_t PURPLE = 8323327; //R 123, G 0, B 255
 
  private:
 
