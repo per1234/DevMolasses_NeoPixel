@@ -1027,3 +1027,7 @@ uint8_t DevMolasses_NeoPixel::getBrightness(void) const {
 void DevMolasses_NeoPixel::clear() {
   memset(pixels, 0, numBytes);
 }
+
+void DevMolasses_NeoPixel::colorChange(uint32_t color) {
+
+}
