@@ -1028,6 +1028,148 @@ void DevMolasses_NeoPixel::clear() {
   memset(pixels, 0, numBytes);
 }
 
+//Set all the pixels to the same color at the same time
 void DevMolasses_NeoPixel::colorChange(uint32_t color) {
+	for(uint16_t i=0; i<numPixels(); i++) {
+      setPixelColor(i, color);
+	}
+	show();
+}
 
+// Fill the dots one after the other with a color
+void DevMolasses_NeoPixel::colorWipe(uint32_t color, uint8_t wait) {
+  for(uint16_t i=0; i<numPixels(); i++) {
+      setPixelColor(i, color);
+      show();
+      delay(wait);
+  }
+}
+
+void DevMolasses_NeoPixel::nightLight() {
+	colorChange(DevMolasses_NeoPixel::Q1_WHITE);
+}
+
+//Sets the lights to White at a level appropriate for reading
+void DevMolasses_NeoPixel::readingLight() {
+	colorChange(DevMolasses_NeoPixel::FULL_WHITE);
+}
+
+//Flashes the strip at 10Hz with the given color
+void DevMolasses_NeoPixel::strobeLight(uint32_t color) {
+	colorChange(color); //Set to color
+	delay(70); //Tune Time for lights to be on
+	colorChange(DevMolasses_NeoPixel::OFF); //Set to Off
+	delay(30);  //Tune time for lights to be off
+}
+
+/*
+* Cycles each pixel through the colors individually
+* Each pixel is 1 degree of the wheel from its neighboring pixel
+* Credit to Adafruit.com for the algorithm; edited by DevMolasses
+*/
+void DevMolasses_NeoPixel::rainbow(uint8_t wait) {
+  uint16_t i, j;
+  for(j=0; j<360; j++) {
+    for(i=0; i<numPixels(); i++) {
+      setPixelColor(i,Wheel(((i+j)&359),1,1));
+    }
+    show();
+    delay(wait);
+  }
+}
+
+/*
+* This method will cycle all the pixels simultaneously
+* through all the colors of DevMolasses Wheel
+*/
+void DevMolasses_NeoPixel::fullStripRainbow(uint8_t wait) {
+  for(int hue=0;hue<360;hue++) {
+    for(int i=0; i<numPixels();i++) {
+      setPixelColor(i, Wheel(hue, 1, .25)); //We are using Saturation and Value constant at 1
+    }
+    show();
+    delay(wait);
+  }
+}
+
+//DevMolasses Wheel
+/*Convert a given HSV (Hue Saturation Value) to RGB(Red Green Blue) and set the led to the color
+*  h is hue value, integer between 0 and 360
+*  s is saturation value, double between 0 and 1
+*  v is value, double between 0 and 1
+*http://splinter.com.au/blog/?p=29 
+*/
+uint32_t DevMolasses_NeoPixel::Wheel(short h, double s, double v) {
+  
+  //this is the algorithm to convert from RGB to HSV
+  double r=0; 
+  double g=0; 
+  double b=0;
+
+  double hf=h/60.0;
+
+  int i=(int)floor(h/60.0);
+  double f = h/60.0 - i;
+  double pv = v * (1 - s);
+  double qv = v * (1 - s*f);
+  double tv = v * (1 - s * (1 - f));
+
+  switch (i)
+  {
+  case 0: //rojo dominante
+    r = v;
+    g = tv;
+    b = pv;
+    break;
+  case 1: //verde
+    r = qv;
+    g = v;
+    b = pv;
+    break;
+  case 2: 
+    r = pv;
+    g = v;
+    b = tv;
+    break;
+  case 3: //azul
+    r = pv;
+    g = qv;
+    b = v;
+    break;
+  case 4:
+    r = tv;
+    g = pv;
+    b = v;
+    break;
+  case 5: //rojo
+    r = v;
+    g = pv;
+    b = qv;
+    break;
+  }
+  
+  //set each component to a integer value between 0 and 255
+  int red=constrain((int)255*r,0,255);
+  int green=constrain((int)255*g,0,255);
+  int blue=constrain((int)255*b,0,255);
+  
+  return Color(red, green, blue);
+}
+
+//Adafruit Wheel
+/*
+* Input a value 0 to 255 to get a color value.
+* The colours are a transition r - g - b - back to r.
+*/
+uint32_t DevMolasses_NeoPixel::Wheel(byte WheelPos) {
+  WheelPos = 255 - WheelPos;
+  if(WheelPos < 85) {
+   return Color(255 - WheelPos * 3, 0, WheelPos * 3);
+  } else if(WheelPos < 170) {
+    WheelPos -= 85;
+   return Color(0, WheelPos * 3, 255 - WheelPos * 3);
+  } else {
+   WheelPos -= 170;
+   return Color(WheelPos * 3, 255 - WheelPos * 3, 0);
+  }
 }

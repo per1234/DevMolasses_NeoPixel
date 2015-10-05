@@ -57,7 +57,13 @@ class DevMolasses_NeoPixel {
     setPixelColor(uint16_t n, uint32_t c),
     setBrightness(uint8_t),
     clear(),
-	colorChange(uint32_t color); //DevMolasses
+	colorChange(uint32_t color),			//DevMolasses
+	colorWipe(uint32_t color, uint8_t wait),//DevMolasses
+	nightLight(),							//DevMolasses
+	readingLight(),							//DevMolasses
+	strobeLight(uint32_t color),			//DevMolasses
+	rainbow(uint8_t wait),					//DevMolasses
+	fullStripRainbow(uint8_t wait);			//DevMolasses
   uint8_t
    *getPixels(void) const,
     getBrightness(void) const;
@@ -66,7 +72,9 @@ class DevMolasses_NeoPixel {
   static uint32_t
     Color(uint8_t r, uint8_t g, uint8_t b);
   uint32_t
-    getPixelColor(uint16_t n) const;
+    getPixelColor(uint16_t n) const,
+    Wheel(short h, double s, double v),		//DevMolasses
+    Wheel(byte WheelPos);					//Adafruit
   inline bool
     canShow(void) { return (micros() - endTime) >= 50L; }
     //Color constants
