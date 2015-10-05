@@ -1,9 +1,9 @@
 /*--------------------------------------------------------------------
-  This file is part of the Adafruit NeoPixel library.
+  This file is part of the DevMolasses NeoPixel library.
 
   NeoPixel is free software: you can redistribute it and/or modify
   it under the terms of the GNU Lesser General Public License as
-  published by the Free Software Foundation, either version 3 of
+  published by the Free Software Foundation, either version 1 of
   the License, or (at your option) any later version.
 
   NeoPixel is distributed in the hope that it will be useful,
@@ -77,7 +77,8 @@ class DevMolasses_NeoPixel {
     Wheel(byte WheelPos);					//Adafruit
   inline bool
     canShow(void) { return (micros() - endTime) >= 50L; }
-    //Color constants
+  //Color constants
+  //Calculated with RGB = R*256*256 + G*256 + B
   const uint32_t FULL_WHITE = 16777215; //R 255, G 255, B 255
   const uint32_t Q3_WHITE = 12566463; //R 191, G 191, B 191
   const uint32_t Q2_WHITE = 8355711; //R 127, G 127, B 127
