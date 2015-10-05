@@ -9,12 +9,14 @@
   Written by Phil Burgess / Paint Your Dragon for Adafruit Industries,
   contributions by PJRC and other members of the open source community.
 
+  Modified by DevMolasses to add feature methods
+
   Adafruit invests time and resources providing this open source code,
   please support Adafruit and open-source hardware by purchasing products
   from Adafruit!
 
   -------------------------------------------------------------------------
-  This file is part of the Adafruit NeoPixel library.
+  This file is part of the DevMolasses NeoPixel library.
 
   NeoPixel is free software: you can redistribute it and/or modify
   it under the terms of the GNU Lesser General Public License as
