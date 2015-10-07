@@ -16,14 +16,9 @@ setBrightness			KEYWORD2
 numPixels				KEYWORD2
 getPixelColor			KEYWORD2
 Color					KEYWORD2
-colorChange				KEYWORD2
-colorWipe				KEYWORD2
-nightLight				KEYWORD2				
-readingLight			KEYWORD2
-strobeLight				KEYWORD2
-rainbow					KEYWORD2
-fullStripRainbow		KEYWORD2
 Wheel					KEYWORD2
+begin					KEYWORD2
+show					KEYWORD2
 
 #######################################
 # Constants

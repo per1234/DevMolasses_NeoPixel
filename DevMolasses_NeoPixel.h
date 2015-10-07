@@ -56,14 +56,7 @@ class DevMolasses_NeoPixel {
     setPixelColor(uint16_t n, uint8_t r, uint8_t g, uint8_t b),
     setPixelColor(uint16_t n, uint32_t c),
     setBrightness(uint8_t),
-    clear(),
-	colorChange(uint32_t color),			//DevMolasses
-	colorWipe(uint32_t color, uint8_t wait),//DevMolasses
-	nightLight(),							//DevMolasses
-	readingLight(),							//DevMolasses
-	strobeLight(uint32_t color),			//DevMolasses
-	rainbow(uint8_t wait),					//DevMolasses
-	fullStripRainbow(uint8_t wait);			//DevMolasses
+    clear();
   uint8_t
    *getPixels(void) const,
     getBrightness(void) const;
